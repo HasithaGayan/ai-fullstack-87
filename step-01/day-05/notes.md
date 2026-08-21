@@ -83,3 +83,60 @@ I fixed it by creating the folder first and then creating the file.
 - Changes pushed to GitHub
 - Working tree clean
 - Local main synced with origin/main
+
+## Day 5 HTML Recovery
+
+I completed the missing Day 5 HTML work.
+
+### Contact Form
+
+I added:
+- Name
+- Email
+- Subject
+- Message
+- Visible labels
+- Send Message button
+
+### HTML Validation
+
+I used:
+- required
+- minlength
+- maxlength
+- type="email"
+- autocomplete
+
+I tested invalid and valid form input in the browser.
+
+### Images and Accessibility
+
+I added a project image with useful alt text.
+
+I made the image responsive using:
+
+max-width: 100%;
+height: auto;
+
+I tested the page at mobile widths.
+
+### Metadata
+
+I added:
+- Page title
+- Viewport metadata
+- Meta description
+- Open Graph title
+- Open Graph description
+- Open Graph type
+
+### Keyboard Accessibility
+
+I tested the page using only the keyboard with:
+- Tab
+- Shift + Tab
+- Enter
+
+### Final Validation
+
+The final Day 5 index.html passed HTML validation with no errors or warnings.
