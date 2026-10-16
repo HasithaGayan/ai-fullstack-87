@@ -1,0 +1,19 @@
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.project-card {
+    flex: 1 1 260px;
+    border: 1px solid gray;
+    padding: 16px;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+}
