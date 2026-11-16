@@ -411,3 +411,29 @@ const functionTests = [
 functionTests.forEach(([name, passed]) => {
   console.log(`${name}: ${passed ? "PASS ✅" : "FAIL ❌"}`);
 });
+
+
+
+
+console.log("----- Independent Challenge: Sum Even Numbers -----");
+
+function sumEvenUpTo(limit) {
+    if (!Number.isInteger(limit) || limit < 1) {
+        return "Invalid limit";
+    }
+
+    let total = 0;
+
+    for (let number = 1; number <= limit; number++) {
+        if (number % 2 === 0) {
+            total += number;
+        }
+    }
+
+    return total;
+}
+
+console.log(sumEvenUpTo(6));
+console.log(sumEvenUpTo(10));
+console.log(sumEvenUpTo(1));
+console.log(sumEvenUpTo(-2));
