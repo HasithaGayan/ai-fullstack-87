@@ -1,0 +1,427 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Day 20 - Persistence Rebuild</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: #0f172a;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    main {
+      width: 100%;
+      max-width: 500px;
+      padding: 28px;
+      background: #1e293b;
+      border-radius: 16px;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    p {
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #64748b;
+      background: #0f172a;
+      color: white;
+      font-size: 16px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #status {
+      margin-top: 20px;
+      color: #86efac;
+    }
+
+    #tests {
+      margin-top: 20px;
+      padding: 12px;
+      background: #0f172a;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <h1>💾 Day 20 - Persistence Rebuild</h1>
+
+    <p>
+      Save a task to your browser.
+      Refresh the page, then restore it.
+    </p>
+
+    <label for="task-input">Task name</label>
+
+    <input
+      id="task-input"
+      type="text"
+      placeholder="Study JavaScript"
+      maxlength="100"
+    >
+
+    <div class="buttons">
+      <button id="save-button">Save Task</button>
+      <button id="load-button">Load Task</button>
+      <button id="clear-button">Clear</button>
+    </div>
+
+    <p id="status" role="status" aria-live="polite">
+      Ready!
+    </p>
+
+    <h2>🧪 Automated Tests</h2>
+    <div id="tests">Running...</div>
+  </main>
+
+  <script>
+
+    // =====================================
+    // 1. SELECT HTML ELEMENTS
+    // =====================================
+
+    const taskInput =
+      document.querySelector("#task-input");
+
+    const saveButton =
+      document.querySelector("#save-button");
+
+    const loadButton =
+      document.querySelector("#load-button");
+
+    const clearButton =
+      document.querySelector("#clear-button");
+
+    const statusMessage =
+      document.querySelector("#status");
+
+    const testResults =
+      document.querySelector("#tests");
+
+
+    // =====================================
+    // 2. STORAGE KEY
+    // =====================================
+
+    const STORAGE_KEY = "day20-rebuild-task";
+
+
+    // =====================================
+    // 3. SAVE TASK
+    // =====================================
+
+    function saveTask(task) {
+
+      try {
+
+        const jsonData = JSON.stringify(task);
+
+        localStorage.setItem(
+          STORAGE_KEY,
+          jsonData
+        );
+
+        return true;
+
+      } catch (error) {
+
+        console.error("Save error:", error);
+
+        return false;
+
+      }
+
+    }
+
+
+    // =====================================
+    // 4. LOAD TASK
+    // =====================================
+
+    function loadTask() {
+
+      try {
+
+        const savedData =
+          localStorage.getItem(STORAGE_KEY);
+
+        if (savedData === null) {
+          return null;
+        }
+
+        const task = JSON.parse(savedData);
+
+        if (
+          typeof task !== "string" ||
+          task.trim().length === 0
+        ) {
+          return null;
+        }
+
+        return task;
+
+      } catch (error) {
+
+        console.error("Load error:", error);
+
+        return null;
+
+      }
+
+    }
+
+
+    // =====================================
+    // 5. SAVE BUTTON
+    // =====================================
+
+    saveButton.addEventListener(
+      "click",
+      function() {
+
+        const task = taskInput.value.trim();
+
+        if (task.length === 0) {
+
+          statusMessage.textContent =
+            "❌ Please enter a task.";
+
+          return;
+        }
+
+        const saved = saveTask(task);
+
+        if (saved) {
+
+          statusMessage.textContent =
+            "✅ Task saved successfully!";
+
+        } else {
+
+          statusMessage.textContent =
+            "❌ Unable to save task.";
+
+        }
+
+      }
+    );
+
+
+    // =====================================
+    // 6. LOAD BUTTON
+    // =====================================
+
+    loadButton.addEventListener(
+      "click",
+      function() {
+
+        const task = loadTask();
+
+        if (task === null) {
+
+          statusMessage.textContent =
+            "❌ No valid saved task found.";
+
+          return;
+        }
+
+        taskInput.value = task;
+
+        statusMessage.textContent =
+          "✅ Saved task restored!";
+
+      }
+    );
+
+
+    // =====================================
+    // 7. CLEAR BUTTON
+    // =====================================
+
+    clearButton.addEventListener(
+      "click",
+      function() {
+
+        try {
+
+          localStorage.removeItem(STORAGE_KEY);
+
+          taskInput.value = "";
+
+          statusMessage.textContent =
+            "✅ Saved task cleared!";
+
+        } catch (error) {
+
+          console.error("Clear error:", error);
+
+          statusMessage.textContent =
+            "❌ Unable to clear task.";
+
+        }
+
+      }
+    );
+
+
+    // =====================================
+    // 8. AUTOMATED TESTS
+    // =====================================
+
+    function runTests() {
+
+      let passed = 0;
+      let failed = 0;
+
+      // Use a separate key so tests don't
+      // overwrite your saved task.
+      const TEST_KEY = "day20-rebuild-test";
+
+      let output = "";
+
+      function check(name, condition) {
+
+        if (condition) {
+
+          passed++;
+
+          output += "✅ " + name + "\n";
+
+        } else {
+
+          failed++;
+
+          output += "❌ " + name + "\n";
+
+        }
+
+      }
+
+      try {
+
+        // Test 1: Save a string as JSON.
+        localStorage.setItem(
+          TEST_KEY,
+          JSON.stringify("Study JavaScript")
+        );
+
+        check(
+          "JSON task saved",
+          localStorage.getItem(TEST_KEY) ===
+            '"Study JavaScript"'
+        );
+
+        // Test 2: Restore the JSON string.
+        const restored = JSON.parse(
+          localStorage.getItem(TEST_KEY)
+        );
+
+        check(
+          "JSON task restored",
+          restored === "Study JavaScript"
+        );
+
+        // Test 3: Check missing data.
+        localStorage.removeItem(TEST_KEY);
+
+        check(
+          "Missing task handled",
+          localStorage.getItem(TEST_KEY) === null
+        );
+
+        // Test 4: Invalid JSON fails safely.
+        let invalidJsonDetected = false;
+
+        try {
+          JSON.parse("{broken-json");
+        } catch (error) {
+          invalidJsonDetected = true;
+        }
+
+        check(
+          "Invalid JSON detected",
+          invalidJsonDetected
+        );
+
+      } catch (error) {
+
+        failed++;
+
+        output +=
+          "❌ Storage unavailable: " +
+          error.message + "\n";
+
+      } finally {
+
+        try {
+          localStorage.removeItem(TEST_KEY);
+        } catch (error) {
+          console.warn(error.message);
+        }
+
+      }
+
+      output += "\n";
+      output += "Passed: " + passed + "\n";
+      output += "Failed: " + failed;
+
+      testResults.textContent = output;
+
+      console.log(output);
+
+    }
+
+    // Start automatic tests.
+    runTests();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+
+/* ===================================
+   DAY 19 - WEATHER DASHBOARD
+=================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  background: linear-gradient(
+    135deg,
+    #0f172a,
+    #1e3a5f
+  );
+
+  color: #f8fafc;
+  font-family: Arial, sans-serif;
+}
+
+/* Main weather app */
+
+.weather-app {
+  width: 100%;
+  max-width: 550px;
+  padding: 30px;
+
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 20px;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Header */
+
+.app-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: 28px;
+}
+
+.app-header p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ===================================
+   CITY SEARCH
+=================================== */
+
+#weather-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.search-group {
+  display: flex;
+  gap: 10px;
+}
+
+#city-input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px;
+
+  border: 2px solid #475569;
+  border-radius: 10px;
+
+  background: #0f172a;
+  color: white;
+  font-size: 16px;
+}
+
+#city-input::placeholder {
+  color: #94a3b8;
+}
+
+#city-input:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+
+/* Search button */
+
+#search-button {
+  padding: 14px 20px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #2563eb;
+  color: white;
+
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#search-button:hover {
+  background: #1d4ed8;
+}
+
+#search-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#search-button:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 3px;
+}
+
+/* ===================================
+   STATUS MESSAGE
+=================================== */
+
+#status {
+  margin: 20px 0;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ===================================
+   WEATHER RESULT CARD
+=================================== */
+
+#weather-result {
+  margin-top: 24px;
+  padding: 24px;
+
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 16px;
+
+  text-align: center;
+}
+
+#location-name {
+  margin: 0 0 18px;
+  font-size: 23px;
+  color: #f8fafc;
+}
+
+.weather-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+#weather-icon {
+  font-size: 54px;
+}
+
+#temperature {
+  margin: 0;
+  font-size: 48px;
+  font-weight: bold;
+  color: #fbbf24;
+}
+
+#weather-description {
+  margin: 15px 0 25px;
+  font-size: 16px;
+  color: #cbd5e1;
+}
+
+/* ===================================
+   WEATHER DETAILS
+=================================== */
+
+.weather-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.detail-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 16px 10px;
+
+  background: #1e293b;
+  border-radius: 12px;
+}
+
+.detail-card span {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.detail-card strong {
+  color: #f8fafc;
+  font-size: 18px;
+}
+
+/* ===================================
+   MOBILE RESPONSIVENESS
+=================================== */
+
+@media (max-width: 480px) {
+  body {
+    padding: 20px 12px;
+  }
+
+  .weather-app {
+    padding: 22px 16px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .search-group {
+    flex-direction: column;
+  }
+
+  #search-button {
+    width: 100%;
+  }
+
+  #weather-result {
+    padding: 18px 12px;
+  }
+
+  #temperature {
+    font-size: 40px;
+  }
+
+  .weather-details {
+    gap: 8px;
+  }
+}
+
+
+
+
+/* ===================================
+   DAY 19 - LOCATION BUTTON
+=================================== */
+
+#location-button {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px 18px;
+
+  background: #0f172a;
+  color: #7dd3fc;
+
+  border: 2px solid #38bdf8;
+  border-radius: 10px;
+
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#location-button:hover {
+  background: #164e63;
+}
+
+#location-button:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 3px;
+}
