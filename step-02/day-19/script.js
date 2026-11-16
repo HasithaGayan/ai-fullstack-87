@@ -40,10 +40,10 @@ let latestRequestId = 0;
 // ===================================
 
 const WEATHER_CODES = {
-  0:  { description: "Clear sky", icon: "☀️" },
-  1:  { description: "Mainly clear", icon: "🌤️" },
-  2:  { description: "Partly cloudy", icon: "⛅" },
-  3:  { description: "Overcast", icon: "☁️" },
+  0: { description: "Clear sky", icon: "☀️" },
+  1: { description: "Mainly clear", icon: "🌤️" },
+  2: { description: "Partly cloudy", icon: "⛅" },
+  3: { description: "Overcast", icon: "☁️" },
 
   45: { description: "Fog", icon: "🌫️" },
   48: { description: "Depositing rime fog", icon: "🌫️" },
@@ -75,9 +75,15 @@ const WEATHER_CODES = {
   86: { description: "Heavy snow showers", icon: "🌨️" },
 
   95: { description: "Thunderstorm", icon: "⛈️" },
-  96: { description: "Thunderstorm with slight hail", icon: "⛈️" },
+  96: {
+    description: "Thunderstorm with slight hail",
+    icon: "⛈️"
+  },
   97: { description: "Heavy thunderstorm", icon: "⛈️" },
-  99: { description: "Thunderstorm with heavy hail", icon: "⛈️" }
+  99: {
+    description: "Thunderstorm with heavy hail",
+    icon: "⛈️"
+  }
 };
 
 // ===================================
@@ -116,7 +122,6 @@ function renderWeather(location, weather) {
     weather.isDay
   );
 
-  // Show the country when available.
   locationName.textContent = location.country
     ? `${location.name}, ${location.country}`
     : location.name;
@@ -143,7 +148,9 @@ function renderWeather(location, weather) {
 // ===================================
 
 function showStatus(message, color) {
+
   statusMessage.textContent = message;
+
   statusMessage.style.color = color;
 }
 
@@ -151,27 +158,23 @@ function showStatus(message, color) {
 // 8. GET BROWSER LOCATION
 // ===================================
 
-// NEW: Convert the browser's callback-based
-// geolocation API into a Promise.
-
 function getBrowserLocation() {
 
   return new Promise(function(resolve, reject) {
 
-    // Check browser support.
     if (!navigator.geolocation) {
+
       reject(
         new Error(
           "Your browser does not support location access."
         )
       );
+
       return;
     }
 
-    // The browser may ask for permission.
     navigator.geolocation.getCurrentPosition(
 
-      // SUCCESS: We received coordinates.
       function(position) {
 
         resolve({
@@ -183,7 +186,6 @@ function getBrowserLocation() {
 
       },
 
-      // ERROR: Explain what went wrong.
       function(error) {
 
         if (error.code === 1) {
@@ -222,7 +224,6 @@ function getBrowserLocation() {
 
       },
 
-      // Geolocation settings.
       {
         enableHighAccuracy: false,
         timeout: 12000,
@@ -239,12 +240,8 @@ function getBrowserLocation() {
 // 9. LOAD WEATHER
 // ===================================
 
-// Works for BOTH city searches and
-// browser location searches.
-
 async function loadWeather(locationPromise, label) {
 
-  // Identify the latest request.
   const requestId = ++latestRequestId;
 
   showStatus(
@@ -261,26 +258,24 @@ async function loadWeather(locationPromise, label) {
 
   try {
 
-    // STEP 1: Get coordinates.
+    // Get the location.
     const location = await locationPromise;
 
-    // Ignore outdated requests.
     if (requestId !== latestRequestId) {
       return;
     }
 
-    // STEP 2: Fetch current weather.
+    // Get current weather.
     const weather = await getCurrentWeather(
       location.latitude,
       location.longitude
     );
 
-    // Ignore outdated weather responses.
     if (requestId !== latestRequestId) {
       return;
     }
 
-    // STEP 3: Update the webpage.
+    // Display weather on the webpage.
     renderWeather(location, weather);
 
     showStatus(
@@ -290,7 +285,6 @@ async function loadWeather(locationPromise, label) {
 
   } catch (error) {
 
-    // Ignore errors from older searches.
     if (requestId !== latestRequestId) {
       return;
     }
@@ -323,7 +317,6 @@ async function loadWeather(locationPromise, label) {
 
   } finally {
 
-    // Only the newest request resets controls.
     if (requestId === latestRequestId) {
 
       searchButton.textContent = "🔍 Search";
@@ -338,7 +331,7 @@ async function loadWeather(locationPromise, label) {
 }
 
 // ===================================
-// 10. SEARCH BY CITY
+// 10. HANDLE CITY SEARCH
 // ===================================
 
 weatherForm.addEventListener("submit", function(event) {
@@ -347,8 +340,6 @@ weatherForm.addEventListener("submit", function(event) {
 
   const cityName = cityInput.value.trim();
 
-  // Prevent an older request from changing
-  // the UI when the new input is invalid.
   if (cityName.length < 2 || cityName.length > 100) {
 
     latestRequestId++;
@@ -368,7 +359,6 @@ weatherForm.addEventListener("submit", function(event) {
     return;
   }
 
-  // Start city lookup immediately.
   loadWeather(
     searchCity(cityName),
     cityName
@@ -377,14 +367,11 @@ weatherForm.addEventListener("submit", function(event) {
 });
 
 // ===================================
-// 11. SEARCH BY BROWSER LOCATION
+// 11. HANDLE LOCATION BUTTON
 // ===================================
-
-// NEW: Handle the location button.
 
 locationButton.addEventListener("click", function() {
 
-  // Geolocation needs a secure context.
   if (!window.isSecureContext) {
 
     latestRequestId++;
@@ -404,8 +391,6 @@ locationButton.addEventListener("click", function() {
     return;
   }
 
-  // Request location permission and
-  // fetch the weather if allowed.
   loadWeather(
     getBrowserLocation(),
     "your location"
@@ -414,7 +399,7 @@ locationButton.addEventListener("click", function() {
 });
 
 // ===================================
-// 12. WEATHER CODE CHECKS
+// 12. WEATHER CODE TESTS
 // ===================================
 
 console.assert(
@@ -449,3 +434,50 @@ showStatus(
 );
 
 console.log("Weather Dashboard is ready!");
+
+// ===================================
+// 14. DAY 19 JAVASCRIPT CHALLENGE
+// ===================================
+
+// NEW: Fetch a city's temperature and
+// return it as a readable message.
+
+async function getCityTemperature(cityName) {
+
+  try {
+
+    // STEP 1: Find the city.
+    const location = await searchCity(cityName);
+
+    // STEP 2: Fetch weather using coordinates.
+    const weather = await getCurrentWeather(
+      location.latitude,
+      location.longitude
+    );
+
+    // STEP 3: Round the temperature.
+    const roundedTemperature = Math.round(
+      weather.temperature
+    );
+
+    // STEP 4: Return a readable message.
+    return `${location.name}: ${roundedTemperature}°C`;
+
+  } catch (error) {
+
+    // STEP 5: Handle API or city errors.
+    return `Error: ${error.message}`;
+
+  }
+
+}
+
+// ===================================
+// 15. TEST THE NEW FUNCTION
+// ===================================
+
+// Test with a real city.
+getCityTemperature("Colombo").then(console.log);
+
+// Test with an invalid city.
+getCityTemperature("xyznotarealcity123").then(console.log);
