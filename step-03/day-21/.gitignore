@@ -1,0 +1,7 @@
+
+# Day 21 - Ignore installed npm packages
+
+node_modules/
+
+# Ignore temporary log files
+npm-debug.log*
