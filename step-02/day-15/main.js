@@ -322,3 +322,21 @@ console.log(
   "/",
   day15Tests.length
 );
+
+
+
+
+
+try {
+  console.log(getDiscountedProduct(1, 10));
+  console.log(getDiscountedProduct(2, 20));
+  console.log(getDiscountedProduct(99, 10));
+} catch (error) {
+  console.error(error.message);
+}
+
+try {
+  console.log(getDiscountedProduct(1, 150));
+} catch (error) {
+  console.error(error.message);
+}
