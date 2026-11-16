@@ -576,3 +576,24 @@ console.assert(
 );
 
 console.log("All 7 assertions executed.");
+
+
+
+
+
+console.log("----- Independent Challenge: Affordable Products -----");
+
+function getAffordableProducts(maxPrice) {
+    if (!Number.isFinite(maxPrice) || maxPrice < 0) {
+        return [];
+    }
+
+    return products
+        .filter(product => product.price <= maxPrice)
+        .map(product => product.name);
+}
+
+console.log(getAffordableProducts(1000));
+console.log(getAffordableProducts(3000));
+console.log(getAffordableProducts(500));
+console.log(getAffordableProducts(-5));
