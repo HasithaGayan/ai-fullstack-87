@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Day 17 - Task Manager</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <main class="task-manager">
+
+    <h1>📝 My Task Manager</h1>
+
+    <p class="subtitle">
+      Organize your tasks and stay productive.
+    </p>
+
+    <!-- Task input form -->
+    <form id="task-form">
+
+      <label for="task-input">New Task</label>
+
+      <div class="input-group">
+        <input
+          type="text"
+          id="task-input"
+          placeholder="Enter a task..."
+          maxlength="100"
+          required
+        >
+
+        <button type="submit" id="add-btn">
+          + Add
+        </button>
+      </div>
+
+    </form>
+
+    <!-- Task filters -->
+    <div class="filters" aria-label="Task filters">
+
+      <button
+        type="button"
+        class="filter-btn active"
+        data-filter="all"
+      >
+        All
+      </button>
+
+      <button
+        type="button"
+        class="filter-btn"
+        data-filter="active"
+      >
+        Active
+      </button>
+
+      <button
+        type="button"
+        class="filter-btn"
+        data-filter="completed"
+      >
+        Completed
+      </button>
+
+    </div>
+
+    <!-- Task count -->
+    <p id="task-count" aria-live="polite">
+      0 tasks remaining
+    </p>
+
+    <!-- Task list -->
+    <ul id="task-list"></ul>
+
+    <!-- Empty state -->
+    <p id="empty-message">
+      No tasks yet. Add your first task!
+    </p>
+
+  </main>
+
+</body>
+</html>

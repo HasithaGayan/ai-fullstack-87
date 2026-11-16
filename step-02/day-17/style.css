@@ -1,0 +1,275 @@
+
+/* ================================
+   DAY 17 - TASK MANAGER
+================================ */
+
+/* Reset default spacing */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 30px 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  background: linear-gradient(
+    135deg,
+    #0f172a,
+    #1e293b
+  );
+
+  color: #f8fafc;
+  font-family: Arial, sans-serif;
+}
+
+/* Main task manager card */
+.task-manager {
+  width: 100%;
+  max-width: 550px;
+  padding: 30px;
+
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 20px;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Heading */
+h1 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0 0 30px;
+  color: #94a3b8;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ================================
+   TASK INPUT FORM
+================================ */
+
+#task-form label {
+  display: block;
+  margin-bottom: 10px;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+}
+
+#task-input {
+  flex: 1;
+  min-width: 0;
+
+  padding: 14px;
+  border: 2px solid #475569;
+  border-radius: 10px;
+
+  background: #0f172a;
+  color: white;
+  font-size: 16px;
+}
+
+#task-input::placeholder {
+  color: #94a3b8;
+}
+
+#task-input:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+
+/* All buttons */
+button {
+  border: none;
+  border-radius: 10px;
+
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+  filter: brightness(1.15);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 3px;
+}
+
+/* Add task button */
+#add-btn {
+  padding: 14px 20px;
+  background: #2563eb;
+}
+
+/* ================================
+   FILTER BUTTONS
+================================ */
+
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.filter-btn {
+  padding: 10px 16px;
+  background: #334155;
+}
+
+.filter-btn.active {
+  background: #2563eb;
+}
+
+/* ================================
+   TASK COUNT
+================================ */
+
+#task-count {
+  margin-top: 25px;
+  margin-bottom: 15px;
+
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+/* ================================
+   TASK LIST
+================================ */
+
+#task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+  margin-bottom: 10px;
+  padding: 15px;
+
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 12px;
+}
+
+.task-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 0;
+  flex: 1;
+}
+
+.task-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #22c55e;
+  cursor: pointer;
+}
+
+.task-text {
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+
+/* Edit and delete buttons */
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 8px 10px;
+}
+
+.edit-btn {
+  background: #0369a1;
+}
+
+.delete-btn {
+  background: #b91c1c;
+}
+
+/* ================================
+   EMPTY MESSAGE
+================================ */
+
+#empty-message {
+  margin-top: 25px;
+  padding: 25px 10px;
+
+  color: #94a3b8;
+  font-size: 14px;
+  text-align: center;
+
+  border: 1px dashed #475569;
+  border-radius: 12px;
+}
+
+/* ================================
+   MOBILE RESPONSIVENESS
+================================ */
+
+@media (max-width: 480px) {
+  .task-manager {
+    padding: 20px 15px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  #add-btn {
+    width: 100%;
+  }
+
+  .task-item {
+    flex-wrap: wrap;
+  }
+
+  .task-actions {
+    margin-left: auto;
+  }
+}
