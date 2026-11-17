@@ -1,0 +1,13 @@
+
+# Installed dependencies
+node_modules/
+
+# Compiled JavaScript
+dist/
+
+# Temporary npm logs
+npm-debug.log*
+
+# Environment variables
+.env
+.env.local
