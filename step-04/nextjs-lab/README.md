@@ -285,9 +285,130 @@ directive because it requires state and events.
 The quantity selector is a demonstration
 estimate only, not a checkout system.
 
+## Day 33 - Server-Side Data Fetching
+
+### Learning Objectives
+
+- Fetch external API data in Server Components.
+- Use asynchronous pages and route parameters.
+- Validate external JSON at runtime.
+- Handle loading, empty and error states.
+- Distinguish missing resources from failed requests.
+
+### External API
+
+Provider: DummyJSON
+
+Endpoints:
+
+- https://dummyjson.com/products?limit=6
+- https://dummyjson.com/products/:id
+
+### Application Routes
+
+| Route | Purpose |
+| --- | --- |
+| /remote-products | Remote product catalog |
+| /remote-products/:id | Remote product details |
+
+### File Structure
+
+    src/
+    |-- app/
+    |   |-- remote-products/
+    |       |-- page.tsx
+    |       |-- loading.tsx
+    |       |-- error.tsx
+    |       |-- not-found.tsx
+    |       |-- [id]/
+    |           |-- page.tsx
+    |-- data/
+        |-- remoteProducts.ts
+
+### Data Flow
+
+    Browser Request
+          |
+    Async Server Component
+          |
+    Remote Product Service
+          |
+    DummyJSON API
+          |
+    Runtime Validation
+          |
+    Typed View Model
+          |
+    Rendered UI
+
+Data is fetched on the server to keep
+data retrieval separate from browser
+interactivity.
+
+### Runtime Validation
+
+External JSON is initially treated as unknown.
+
+Validation checks:
+
+- Valid product object.
+- Positive integer ID.
+- Non-empty product title.
+- Finite non-negative price.
+- Non-negative integer stock.
+- String description.
+- Valid products array.
+- Matching detail response ID.
+
+The external title field is mapped to
+the internal name property.
+
+### Request Handling
+
+- Check HTTP response status.
+- Use cache: no-store for fresh data.
+- Apply a ten-second request timeout.
+- Return null for invalid or missing IDs.
+- Throw errors for failed or malformed responses.
+
+### UI States
+
+| State | Implementation |
+| --- | --- |
+| Success | Render validated products |
+| Loading | loading.tsx |
+| Empty | Display an empty catalog message |
+| Error | error.tsx |
+| Not found | not-found.tsx |
+
+The error boundary is a Client Component.
+Its retry button reloads the current page.
+
+### Reproducible Test Scenarios
+
+| Scenario | Expected Result |
+| --- | --- |
+| Normal request | Remote products displayed |
+| scenario=slow | Loading UI |
+| scenario=empty | Empty catalog |
+| scenario=error | Error boundary |
+| scenario=invalid | Validation failure |
+| Valid product ID | Product details |
+| Unknown product ID | Not-found UI |
+| Malformed ID | Not-found UI |
+
+The slow, empty, error and invalid scenarios
+are intentional learning simulations.
+
+Normal requests depend on external API
+availability and an internet connection.
+
+Existing local inventory routes and the
+Day 32 QuantitySelector remain unchanged.
+
 ## Current Limitations
 
-- Product data is fictional and local.
+- Local inventory uses fictional data; remote inventory uses an external demonstration API.
 - No database integration.
 - No authentication.
 - No product editing or purchasing.
@@ -295,8 +416,7 @@ estimate only, not a checkout system.
 
 ## Planned Development
 
-- Data fetching and caching
-- Loading and error handling
+- Advanced caching and revalidation
 - Frontend quality improvements
 - InsightBoard Next.js migration
 
