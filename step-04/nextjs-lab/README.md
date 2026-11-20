@@ -522,6 +522,99 @@ unsupported content types and Proxy redirects.
 
 Existing Day 31-33 functionality is preserved.
 
+## Day 35 - Authentication and Authorization
+
+### AuthLab
+
+An educational authentication prototype using
+Next.js Server Actions and signed cookie sessions.
+
+### Features
+
+- Student and administrator sign-in.
+- Server-side credential verification.
+- HMAC-SHA256 signed session tokens.
+- HttpOnly session cookies.
+- Server-side session expiry validation.
+- Protected dashboard.
+- Role-based API authorization.
+- Sign-out functionality.
+- Tampered-session rejection.
+
+### Application Routes
+
+| Route | Purpose |
+| --- | --- |
+| /auth-lab | Sign-in page |
+| /auth-lab/dashboard | Protected dashboard |
+| /api/auth-lab/report | Administrator report |
+
+### Authentication Flow
+
+    Browser Login Form
+          |
+    Server Action
+          |
+    Verify Credentials
+          |
+    Create Signed Session
+          |
+    HttpOnly Cookie
+          |
+    Server-Side Session Validation
+          |
+    Role Authorization
+          |
+    Protected Resource
+
+### HTTP Responses
+
+| User | Report API Status |
+| --- | --- |
+| Signed out | 401 Unauthorized |
+| Student | 403 Forbidden |
+| Administrator | 200 OK |
+
+### Environment Variables
+
+- NEXTLAB_SESSION_SECRET
+- NEXTLAB_STUDENT_PASSWORD
+- NEXTLAB_ADMIN_PASSWORD
+- NEXTLAB_SESSION_SECONDS
+- NEXTLAB_AUTH_SECURE_COOKIE
+
+Secrets must remain on the server.
+Do not commit actual credentials.
+
+### Security Principles
+
+Authentication identifies the user.
+
+Authorization determines permitted actions.
+
+Every protected resource independently
+verifies the session and permissions.
+
+Signed tokens provide integrity, not encryption.
+
+The server checks both token signatures
+and expiration times.
+
+### Limitations
+
+- Educational authentication prototype.
+- No permanent user database.
+- No production password hashing system.
+- No login rate limiting.
+- No server-side token revocation.
+- Logout removes the browser session cookie.
+- Previously copied tokens remain valid
+  until expiry or signing-key rotation.
+- HTTPS secure cookies required for deployment.
+
+Production applications should use a
+maintained authentication solution.
+
 ## Current Limitations
 
 - Local inventory uses fictional data; remote inventory uses an external demonstration API.
