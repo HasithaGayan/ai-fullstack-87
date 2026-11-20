@@ -732,6 +732,122 @@ device and testing conditions.
 
 https://nextjs.org/docs/app/guides/caching-without-cache-components
 
+## Day 37 - Forms, Mutations and Validation
+
+### FormLab
+
+An accessible project management form
+demonstrating reusable components, API
+mutations and server-side validation.
+
+### Features
+
+- Create and edit project records.
+- Reusable input, select and button components.
+- Shared client and server validation.
+- Runtime API response validation.
+- Field-level and global errors.
+- Pending and successful submission states.
+- Immediate duplicate submission guard.
+- Keyboard-accessible controls.
+- Automatic focus after validation errors.
+- Local demonstration write authorization.
+
+### Application Routes
+
+| Method | Route | Purpose |
+| --- | --- | --- |
+| GET | /form-lab | Project management interface |
+| GET | /api/form-lab | Retrieve projects |
+| POST | /api/form-lab | Create project |
+| PATCH | /api/form-lab?id=1 | Update project |
+
+### Architecture
+
+    Client Form
+         |
+    Shared Validation
+         |
+    Route Handler
+         |
+    Authorization
+         |
+    Server Validation
+         |
+    In-Memory Storage
+         |
+    JSON Response
+         |
+    React State and Feedback
+
+### Validation Rules
+
+- Project name must contain 3-60 characters.
+- Priority must be Low, Medium or High.
+- Project IDs must be positive safe integers.
+- Write requests require valid authorization.
+- Write requests must contain valid JSON.
+
+### HTTP Responses
+
+| Status | Meaning |
+| --- | --- |
+| 200 | Successful read or update |
+| 201 | Project created |
+| 400 | Invalid request |
+| 401 | Invalid or missing write key |
+| 404 | Project not found |
+| 415 | Unsupported content type |
+| 503 | Missing server configuration |
+
+### Accessibility
+
+- Associated form labels.
+- Visible keyboard focus.
+- aria-invalid for invalid inputs.
+- aria-describedby for field errors.
+- aria-live for status feedback.
+- Focus management after failed submissions.
+
+### Testing
+
+The API test suite covers valid and invalid
+GET, POST and PATCH operations.
+
+Direct invalid requests demonstrate that
+server-side validation cannot be bypassed
+by skipping client-side validation.
+
+### Configuration
+
+NEXTLAB_DEMO_WRITE_KEY is required for
+local demonstration write operations.
+
+Never commit real credentials.
+
+### Limitations
+
+- In-memory demonstration storage.
+- Records reset when the process restarts.
+- No permanent database.
+- No production user authorization.
+- No server-side idempotency guarantee.
+- Client submission locks protect only
+  against overlapping submissions.
+
+This application is an educational prototype.
+
+### Debugging Lessons
+
+A Next.js page.tsx and route.ts cannot
+occupy the same route segment.
+
+Frontend pages and API handlers must use
+the intended separate route locations.
+
+A failed production build must be fixed
+before starting the production server.
+
 ## Current Limitations
 
 - Local inventory uses fictional data; remote inventory uses an external demonstration API.
