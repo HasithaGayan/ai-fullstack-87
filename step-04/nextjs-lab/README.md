@@ -406,6 +406,122 @@ availability and an internet connection.
 Existing local inventory routes and the
 Day 32 QuantitySelector remain unchanged.
 
+## Day 34 - Route Handlers and Proxy
+
+### NotesLab
+
+NotesLab demonstrates frontend and backend
+integration using Next.js Route Handlers.
+
+### Features
+
+- Internal GET and POST endpoints.
+- Typed note model.
+- Runtime request validation.
+- Consistent JSON response structure.
+- HTTP status code handling.
+- Demo write-access verification.
+- Interactive note creation form.
+- Loading, pending, success and error feedback.
+- Narrow Proxy redirect rule.
+
+### API Endpoints
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| GET | /api/notes | List notes |
+| GET | /api/notes?id=1 | Retrieve a note |
+| POST | /api/notes | Create a note |
+
+### HTTP Status Codes
+
+| Code | Meaning |
+| --- | --- |
+| 200 | Successful retrieval |
+| 201 | Resource created |
+| 400 | Invalid input or malformed JSON |
+| 401 | Invalid or missing credentials |
+| 404 | Note not found |
+| 415 | Unsupported content type |
+| 503 | Demo write access unavailable |
+
+### Architecture
+
+    Browser
+       |
+    NotesLab Client Component
+       |
+    GET / POST Route Handler
+       |
+    Authorization and Input Validation
+       |
+    In-memory Note Collection
+       |
+    JSON Response
+       |
+    React State Update
+
+### File Structure
+
+    src/
+    |-- app/
+    |   |-- api/
+    |   |   |-- notes/
+    |   |       |-- route.ts
+    |   |-- notes-lab/
+    |       |-- page.tsx
+    |-- lib/
+    |   |-- notes.ts
+    |-- proxy.ts
+
+### Local Configuration
+
+Configure NEXTLAB_DEMO_WRITE_KEY in the
+server environment before starting NextLab.
+
+The credential is a local educational
+demonstration, not production authentication.
+
+Do not commit real credentials or environment
+files containing secrets.
+
+### Request Validation
+
+- Title: 3-80 characters.
+- Content: 1-300 characters.
+- Request body must contain valid JSON.
+- Content type must be application/json.
+- Note IDs must be positive safe integers.
+
+Client-side checks do not replace server
+validation.
+
+### Proxy
+
+The Proxy matches /legacy-notes and redirects
+GET and HEAD requests to /notes-lab.
+
+Proxy is not a complete authorization system.
+Protected write operations verify credentials
+inside the Route Handler.
+
+### Testing
+
+Test scenarios cover successful GET and POST,
+invalid IDs, missing resources, unauthorized
+requests, malformed JSON, invalid input,
+unsupported content types and Proxy redirects.
+
+### Limitations
+
+- Notes use temporary in-memory storage.
+- Data may be lost on restart.
+- No persistent database.
+- No production authentication or sessions.
+- Intended for local learning only.
+
+Existing Day 31-33 functionality is preserved.
+
 ## Current Limitations
 
 - Local inventory uses fictional data; remote inventory uses an external demonstration API.
