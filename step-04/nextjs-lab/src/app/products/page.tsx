@@ -1,6 +1,7 @@
-
 import Link from "next/link";
+
 import { products } from "@/data/products";
+import QuantitySelector from "@/components/QuantitySelector";
 
 export default function ProductsPage() {
     return (
@@ -22,6 +23,12 @@ export default function ProductsPage() {
                         <p>
                             Stock: {product.quantity} units
                         </p>
+
+                        <QuantitySelector
+                            productName={product.name}
+                            price={product.price}
+                            stock={product.quantity}
+                        />
 
                         <Link
                             className="button"

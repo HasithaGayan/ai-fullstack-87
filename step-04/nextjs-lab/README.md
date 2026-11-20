@@ -206,6 +206,85 @@ shared layouts and responsive behavior.
 - Production compilation
 - Route architecture documentation
 
+## Day 32 - Server and Client Components
+
+### Learning Objectives
+
+- Understand Server and Client Components.
+- Use the "use client" directive correctly.
+- Isolate interactive user interface components.
+- Pass serializable props across boundaries.
+- Reduce unnecessary client-side JavaScript.
+- Protect server-only information.
+
+### Component Architecture
+
+| Component | Type | Responsibility |
+| --- | --- | --- |
+| ProductsPage | Server | Render product data |
+| QuantitySelector | Client | Manage interactive quantity |
+| products.ts | Data module | Provide product information |
+
+### Quantity Selector
+
+The Product Catalog includes an interactive
+quantity selector for each available product.
+
+Features:
+
+- Increase and decrease quantity.
+- Prevent quantities below one.
+- Prevent quantities above available stock.
+- Handle out-of-stock products.
+- Calculate estimated total dynamically.
+- Format prices using Intl.NumberFormat.
+- Accessible buttons and live status updates.
+
+### Data Flow
+
+    Product data
+         |
+    ProductsPage (Server)
+         |
+    Serializable props
+         |
+    QuantitySelector (Client)
+         |
+    State and user interactions
+
+The Server Component passes productName, price
+and stock to the Client Component.
+
+The Client Component manages quantity using
+useState and calculates the estimated total.
+
+### Boundary Experiment
+
+Temporarily making ProductsPage a Client
+Component demonstrated that interactivity
+still works with a larger client boundary.
+
+Removing that unnecessary boundary allows
+ProductsPage to remain a Server Component.
+
+QuantitySelector retains its "use client"
+directive because it requires state and events.
+
+### Manual Test Scenarios
+
+| Scenario | Expected Result |
+| --- | --- |
+| Increase quantity | Quantity and total increase |
+| Decrease quantity | Quantity and total decrease |
+| Minimum quantity | Decrease button disabled |
+| Maximum stock | Increase button disabled |
+| Zero stock | Out-of-stock message |
+| Multiple products | Independent component state |
+| Server boundary restored | Interactivity preserved |
+
+The quantity selector is a demonstration
+estimate only, not a checkout system.
+
 ## Current Limitations
 
 - Product data is fictional and local.
@@ -216,7 +295,6 @@ shared layouts and responsive behavior.
 
 ## Planned Development
 
-- Server and Client Component boundaries
 - Data fetching and caching
 - Loading and error handling
 - Frontend quality improvements
