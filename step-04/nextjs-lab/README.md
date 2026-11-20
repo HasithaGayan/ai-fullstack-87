@@ -615,6 +615,123 @@ and expiration times.
 Production applications should use a
 maintained authentication solution.
 
+## Day 36 - Caching, Performance and SEO
+
+### PerformanceLab
+
+A Next.js learning feature demonstrating
+explicit data caching, request-time rendering,
+metadata and responsive image optimization.
+
+### Features
+
+- Cached public inventory calculations.
+- Request-time inventory calculations.
+- Time-based cache revalidation.
+- Data generation and rendering timestamps.
+- Page-specific SEO metadata.
+- Open Graph and Twitter metadata.
+- Conditional canonical URL.
+- Noindex configuration for learning routes.
+- Original and optimized image comparison.
+
+### Application Routes
+
+| Route | Purpose |
+| --- | --- |
+| /performance-lab | Cached inventory data |
+| /performance-lab/live | Uncached inventory data |
+| /performance-lab?image=raw | Original image |
+
+### Caching Architecture
+
+The cached route uses unstable_cache()
+to reuse public inventory snapshots.
+
+The configured revalidation interval is
+60 seconds.
+
+The cached route is still dynamically
+rendered using connection().
+
+The live route calculates inventory data
+on every new server request.
+
+### Caching Decisions
+
+Public inventory summary:
+Cached because short periods of stale
+information are acceptable for this demo.
+
+Live inventory summary:
+Uncached to demonstrate fresh calculation.
+
+Private authentication data:
+Not shared through the public Data Cache.
+
+### Cache Invalidation and Risks
+
+Time-based revalidation refreshes cached
+inventory results after the configured
+interval when requests trigger revalidation.
+
+A request may temporarily receive stale
+data while regeneration takes place.
+
+The public-inventory cache tag identifies
+the cache for future on-demand invalidation.
+
+No on-demand invalidation action is
+implemented in this demonstration.
+
+### SEO and Metadata
+
+The application provides meaningful titles,
+descriptions and social sharing metadata.
+
+NEXTLAB_PUBLIC_ORIGIN may be configured
+for a valid public canonical URL.
+
+Learning routes use noindex.
+
+Noindex does not protect private content.
+
+### Image Optimization
+
+The next/image component provides
+responsive image delivery and optimization.
+
+Original and optimized variants are
+available for performance comparison.
+
+Photo: Radek Grzybowski
+License: CC0 1.0
+Source:
+https://commons.wikimedia.org/wiki/File:Laptop_on_a_desk.jpg
+
+### Performance Verification
+
+Compare image transfer sizes using Chrome
+DevTools or a fixed-width HTTP request.
+
+Use Lighthouse under equivalent test
+conditions for baseline comparison.
+
+Performance measurements depend on
+device and testing conditions.
+
+### Limitations
+
+- Local demonstration inventory data.
+- No external inventory database.
+- Cached information may become stale.
+- Learning routes are not intended for indexing.
+- Cache Components remain disabled.
+
+### Reference
+
+https://nextjs.org/docs/app/guides/caching-without-cache-components
+
 ## Current Limitations
 
 - Local inventory uses fictional data; remote inventory uses an external demonstration API.
