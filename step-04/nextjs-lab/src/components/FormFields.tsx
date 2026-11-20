@@ -13,6 +13,31 @@ interface FieldProps {
     error?: string;
 }
 
+function mergeDescriptions(
+    description: string | undefined,
+    id: string,
+    error?: string
+): string | undefined {
+
+    const ids = [
+        ...(description?.split(/\s+/).filter(Boolean) ?? []),
+        ...(error ? [`${id}-error`] : []),
+    ];
+
+    const merged = [...new Set(ids)].join(" ");
+
+    return merged || undefined;
+}
+
+function mergeClasses(
+    base: string,
+    extra?: string
+) {
+    return [base, extra]
+        .filter(Boolean)
+        .join(" ");
+}
+
 export function FieldError({
     id,
     message,
@@ -42,10 +67,14 @@ export function TextField({
     id,
     label,
     error,
+    className,
+    "aria-describedby": description,
     ...props
 }: TextFieldProps) {
+
     return (
         <div className={styles.field}>
+
             <label htmlFor={id}>
                 {label}
             </label>
@@ -53,12 +82,23 @@ export function TextField({
             <input
                 {...props}
                 id={id}
-                className={styles.control}
-                aria-invalid={Boolean(error)}
-                aria-describedby={
+                className={mergeClasses(
+                    styles.control,
+                    className
+                )}
+
+                aria-invalid={
                     error
-                        ? `${id}-error`
-                        : undefined
+                        ? true
+                        : props["aria-invalid"] ?? false
+                }
+
+                aria-describedby={
+                    mergeDescriptions(
+                        description,
+                        id,
+                        error
+                    )
                 }
             />
 
@@ -81,10 +121,14 @@ export function SelectField({
     label,
     error,
     options,
+    className,
+    "aria-describedby": description,
     ...props
 }: SelectFieldProps) {
+
     return (
         <div className={styles.field}>
+
             <label htmlFor={id}>
                 {label}
             </label>
@@ -92,14 +136,26 @@ export function SelectField({
             <select
                 {...props}
                 id={id}
-                className={styles.control}
-                aria-invalid={Boolean(error)}
-                aria-describedby={
+                className={mergeClasses(
+                    styles.control,
+                    className
+                )}
+
+                aria-invalid={
                     error
-                        ? `${id}-error`
-                        : undefined
+                        ? true
+                        : props["aria-invalid"] ?? false
+                }
+
+                aria-describedby={
+                    mergeDescriptions(
+                        description,
+                        id,
+                        error
+                    )
                 }
             >
+
                 {options.map(option => (
                     <option
                         key={option}
@@ -108,6 +164,7 @@ export function SelectField({
                         {option}
                     </option>
                 ))}
+
             </select>
 
             <FieldError
@@ -122,17 +179,23 @@ export function FormButton({
     pending = false,
     children,
     disabled,
+    className,
     type = "button",
     ...props
 }: ButtonHTMLAttributes<HTMLButtonElement> & {
     pending?: boolean;
 }) {
+
     return (
         <button
             {...props}
             type={type}
             disabled={disabled || pending}
-            className={styles.button}
+
+            className={mergeClasses(
+                styles.button,
+                className
+            )}
         >
             {pending ? "Saving..." : children}
         </button>

@@ -868,3 +868,67 @@ Developed by Hasitha Gayan.
 
 Part of the AI and Full-Stack Web Development
 learning roadmap.
+
+## Day 38 - Testing, Accessibility and Production Quality
+
+### Test Frameworks
+
+- Vitest for unit testing.
+- React Testing Library for component testing.
+- Playwright for real browser testing.
+- Google Chrome as the Playwright browser channel.
+
+### Verified Results
+
+| Test Category | Passed |
+| --- | --- |
+| Unit tests | 8/8 |
+| Component tests | 3/3 |
+| End-to-end tests | 7/7 |
+| Total | 18/18 |
+
+### Automated Coverage
+
+- Project input validation and boundary cases.
+- Accessible labels and error descriptions.
+- Pending and disabled button behavior.
+- Home, Products and Dashboard navigation.
+- Invalid form submission and input focus.
+- Real project creation and editing.
+- API failure handling and retry.
+- Pending requests and failure feedback.
+- Direct invalid API mutation rejection.
+- Mobile layout and keyboard navigation.
+
+### Commands
+
+- npm run test
+- npm run test:watch
+- npm run test:e2e
+- npm run lint
+- npm run typecheck
+- npm run build
+
+### Accessibility Improvement
+
+Reusable input and select components now preserve
+existing help descriptions while also associating
+validation errors using aria-describedby.
+
+This regression was identified using component tests.
+
+### Debugging Lessons
+
+- Dependency installation requires compatible versions.
+- Test configuration belongs at the project root.
+- ENOSPC indicates insufficient storage.
+- Playwright can use installed Google Chrome.
+- Browser environment failures differ from test failures.
+
+### Limitations
+
+- Automated tests cannot guarantee a bug-free application.
+- Manual accessibility and responsive testing remain important.
+- In-memory demonstration records reset after server restart.
+- Demo authorization is not production authentication.
+- Independent clean installation must also be reproducible.
