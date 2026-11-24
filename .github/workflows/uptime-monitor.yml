@@ -1,0 +1,41 @@
+name: HGBP Website Monitoring
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+  push:
+    branches: [ops/hgbp-monitoring]
+    paths: ['.github/workflows/uptime-monitor.yml']
+
+permissions: {}
+
+jobs:
+  availability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: DevPortfolio
+            url: https://hasithagayan.github.io/ai-fullstack-87/
+          - name: InsightBoard
+            url: https://insightboard-sigma.vercel.app/
+          - name: PredictIQ
+            url: https://predictiq-iota-plum.vercel.app/
+          - name: WorkFlow Pro
+            url: https://workflow-pro-weld.vercel.app/
+    steps:
+      - name: Check website availability and HTTPS
+        env:
+          SITE: ${{ matrix.name }}
+          URL: ${{ matrix.url }}
+        run: |
+          echo "Checking $SITE"
+          code=$(curl --silent --show-error --location \
+            --proto '=https' --proto-redir '=https' \
+            --retry 1 --max-time 45 \
+            --output /dev/null --write-out '%{http_code}' "$URL")
+          echo "HTTP status: $code"
+          test "$code" = "200"
