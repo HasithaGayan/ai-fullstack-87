@@ -47,10 +47,10 @@
       <h1>PredictIQ<span>.</span></h1>
       <h2>Urban mobility demand intelligence</h2>
 
-      <p>Explore estimated hourly bicycle rental demand using historical weather and calendar inputs. An educational, locally tested machine-learning application.</p>
+      <p>Explore estimated hourly bicycle rental demand using historical weather and calendar inputs. An educational machine-learning application publicly deployed on Vercel.</p>
 
       <div class="hero-actions">
-        <a class="btn btn-solid" href="https://github.com/HasithaGayan/predictiq" target="_blank" rel="noopener noreferrer">
+        <a class="btn btn-solid" href="https://predictiq-iota-plum.vercel.app/" target="_blank" rel="noopener noreferrer">Open live demo &#8599;</a><a class="btn btn-outline" href="https://github.com/HasithaGayan/predictiq" target="_blank" rel="noopener noreferrer">
           View source code ↗
         </a>
         <a class="btn btn-outline" href="#evaluation">
@@ -58,7 +58,7 @@
         </a>
       </div>
 
-      <p class="pq-muted">LOCAL DEMO · NO PUBLIC PREDICTION SERVICE</p>
+      <p class="pq-muted">LIVE DEMO &#183; PUBLIC PREDICTION SERVICE</p>
     </div>
 
     <div class="pq-stats">
@@ -141,7 +141,7 @@
 
       <p>Three expanding chronological cross-validation folds compared four Random Forest configurations. The selected configuration uses 70 trees, maximum depth 18 and minimum leaf size 2; its training-only CV MAE was 54.4441.</p>
 
-      <p>Two engineered features capture commuting-hour patterns and temperature–humidity interaction. The training pipeline is saved locally for consistent inference; the earlier model is preserved for comparison.</p>
+      <p>Two engineered features capture commuting-hour patterns and temperature–humidity interaction. The verified trained pipeline is packaged for consistent cloud inference; the earlier model is preserved for comparison.</p>
     </section>
 
     <section class="pq-section">
@@ -185,7 +185,7 @@
         </table>
       </div>
 
-      <p>To reproduce locally, follow the repository setup instructions, prepare the dataset and regenerate the trusted model before starting the API.</p>
+      <p>To run locally, follow the repository setup instructions and use the verified trained model. To reproduce training, prepare the original dataset and follow the documented experiments.</p>
 
       <pre class="pq-code">python -m uvicorn backend.app:app --host 127.0.0.1 --port 8000
 python -m pytest tests -q</pre>
@@ -196,7 +196,7 @@ python -m pytest tests -q</pre>
 
       <p>The held-out 2,600 observations remain unused. One validation example on 1 August 2012 at 18:00 had 891 actual rentals versus 409.92 predicted, an absolute error of 481.08. Its cause is not established. Historical data cannot establish present-day forecasting performance.</p>
 
-      <p>The raw dataset and trained joblib artifact are excluded from GitHub. New installations must reproduce training; never load untrusted joblib or pickle files. Public hosting and final held-out evaluation remain future work.</p>
+      <p>The raw dataset remains excluded from GitHub. The verified trained model is included for deployment. Never load untrusted joblib or pickle files. Public hosting is implemented on Vercel; final held-out evaluation remains pending.</p>
     </section>
 
     <section class="pq-section">
