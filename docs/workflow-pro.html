@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b25">
+  <title>WorkFlow Pro | Full-Stack Project Case Study — Hasitha Gayan</title>
+  <meta name="description" content="WorkFlow Pro case study: Next.js, Express, Prisma and PostgreSQL, with Docker-based local integration, authentication checks and GitHub Actions CI.">
+  <meta property="og:title" content="WorkFlow Pro — Engineering Case Study">
+  <meta property="og:description" content="From a local workspace-management prototype to isolated Docker testing and reproducible CI.">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="./favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-portrait-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./workflow-pro-case-study.css">
+  <script>try{const t=localStorage.getItem('hg-theme');document.documentElement.dataset.theme=['system','dark','light'].includes(t)?t:'system'}catch(e){}</script>
+  <script defer src="./script.js"></script>
+</head>
+<body class="case-study-page">
+<a class="skip-link" href="#main-content">Skip to case study</a>
+<div class="spotlight" aria-hidden="true"></div>
+<div class="case-wrap">
+  <header class="case-header">
+    <a class="case-brand" href="./index.html#projects" aria-label="Back to Hasitha Gayan's project portfolio"><span class="case-monogram">H<span>.</span></span><span>HASITHA <span class="brand-quiet">/ CASE STUDIES</span></span></a>
+    <div class="case-top-actions">
+      <a class="case-back" href="./index.html#projects">← All projects</a>
+      <details class="theme-picker" id="theme-picker">
+        <summary class="theme-trigger" aria-label="Choose color theme">
+          <svg class="theme-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+          <span id="theme-current-label">System</span>
+          <svg class="theme-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg>
+        </summary>
+        <div class="theme-options" role="group" aria-label="Color theme options">
+          <button type="button" class="theme-option" data-theme-option="system" aria-pressed="true"><span class="theme-option-icon" aria-hidden="true">◐</span><span class="theme-option-copy"><strong>System</strong><small>Follow device</small></span><span class="theme-option-check" aria-hidden="true">✓</span></button>
+          <button type="button" class="theme-option" data-theme-option="dark" aria-pressed="false"><span class="theme-option-icon" aria-hidden="true">☾</span><span class="theme-option-copy"><strong>Dark</strong><small>Evergreen night</small></span><span class="theme-option-check" aria-hidden="true">✓</span></button>
+          <button type="button" class="theme-option" data-theme-option="light" aria-pressed="false"><span class="theme-option-icon" aria-hidden="true">☼</span><span class="theme-option-copy"><strong>Light</strong><small>Warm ivory</small></span><span class="theme-option-check" aria-hidden="true">✓</span></button>
+        </div>
+      </details>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="case-hero" aria-labelledby="case-title">
+      <div class="case-hero-top"><span class="case-kicker">02 / FULL-STACK ENGINEERING</span><span class="case-status"><span class="case-dot" aria-hidden="true"></span> LOCAL DEMO · CI VERIFIED</span></div>
+      <div class="case-hero-grid"><div>
+        <h1 id="case-title">WorkFlow <em>Pro.</em></h1>
+        <p class="case-lead">A workspace and task-management application built to explore the details behind reliable full-stack software: authentication, API boundaries, database persistence and repeatable testing.</p>
+        <div class="case-tags" aria-label="Technology stack"><span>Next.js 16</span><span>TypeScript</span><span>Express 5</span><span>PostgreSQL 18</span><span>Prisma 7</span><span>Docker</span><span>GitHub Actions</span></div>
+        <div class="case-actions"><a class="case-button primary" href="https://github.com/HasithaGayan/workflow-pro" target="_blank" rel="noopener noreferrer">Explore source code ↗</a><a class="case-button secondary" href="https://github.com/HasithaGayan/workflow-pro/actions" target="_blank" rel="noopener noreferrer">View CI runs ↗</a></div>
+      </div><div class="case-hero-aside"><span class="eyebrow">PROJECT AT A GLANCE</span><dl><div><dt>Application</dt><dd>Workspaces &amp; tasks</dd></div><div><dt>Runtime</dt><dd>Private local Docker</dd></div><div><dt>Deployment</dt><dd>Not publicly hosted</dd></div><div><dt>Verification</dt><dd>Build, integration &amp; persistence checks</dd></div></dl></div></div>
+    </section>
+
+    <div class="case-layout">
+      <nav class="case-toc" aria-label="On this case study"><p>IN THIS CASE STUDY</p><a href="#overview">01 — Problem &amp; approach</a><a href="#interface">02 — Actual interface</a><a href="#architecture">03 — Architecture</a><a href="#engineering">04 — Engineering work</a><a href="#validation">05 — Verification</a><a href="#limitations">06 — Limitations &amp; next</a></nav>
+      <div class="case-body">
+        <section class="case-section" id="overview"><span class="case-section-no">01 / PROBLEM &amp; APPROACH</span><h2>Managing work requires more than a task list.</h2><p>Workspaces, team membership and task activity introduce multiple engineering concerns: deciding who may access an action, preserving data between restarts, and keeping a frontend and backend consistent. WorkFlow Pro serves as a practical environment for working through those concerns.</p><p>I developed and tested a Next.js frontend connected to an Express API and PostgreSQL. The project prioritizes a working local application and verifiable engineering practices rather than claiming large-scale commercial usage.</p><div class="case-feature-grid"><div><span class="feature-no">01</span><h3>Account flows</h3><p>Registration and sign-in are available in the documented local environment.</p></div><div><span class="feature-no">02</span><h3>Workspace workflows</h3><p>Workspace and task-management interfaces supported by a relational backend.</p></div><div><span class="feature-no">03</span><h3>Persistent data</h3><p>An isolated PostgreSQL named volume preserves development data across restarts.</p></div></div></section>
+
+        <section class="case-section" id="interface"><span class="case-section-no">02 / THE ACTUAL INTERFACE</span><h2>A real local application, not a mockup.</h2><p>This screenshot was captured from the working local WorkFlow Pro interface. It shows the Kanban task board and task progress. The app is not currently accessible to the public through a hosted demo.</p><figure class="case-screenshot"><a href="./assets/workflow-pro-real.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-sized genuine WorkFlow Pro screenshot"><img src="./assets/workflow-pro-real.png"  loading="lazy" alt="WorkFlow Pro Kanban board showing To Do, In Progress and Done tasks"></a><figcaption>Actual local app screenshot — select to view full size. Not an online demo.</figcaption></figure></section>
+
+        <section class="case-section" id="architecture"><span class="case-section-no">03 / SYSTEM ARCHITECTURE</span><h2>Connected services, intentionally isolated.</h2><p>In the Day 81 setup, only the frontend is reachable from the developer's Windows loopback interface. The Express API and PostgreSQL database communicate on the internal Compose network without exposing host ports.</p><div class="architecture" aria-label="Browser to Next.js web frontend to Express API to PostgreSQL database"><div class="arch-node"><span>01 / CLIENT</span><strong>Browser</strong><small>127.0.0.1:3081</small></div><span class="arch-arrow" aria-hidden="true">→</span><div class="arch-node"><span>02 / WEB</span><strong>Next.js 16</strong><small>Restricted API proxy</small></div><span class="arch-arrow" aria-hidden="true">→</span><div class="arch-node"><span>03 / API</span><strong>Express 5</strong><small>Prisma 7 client</small></div><span class="arch-arrow" aria-hidden="true">→</span><div class="arch-node"><span>04 / DATA</span><strong>PostgreSQL 18</strong><small>Named Docker volume</small></div></div><p class="case-detail">The Docker Compose stack includes frontend, API and database health checks. Its configuration is intended for local development only; exposing it directly to the public internet would be unsafe.</p><a class="case-text-link" href="https://github.com/HasithaGayan/workflow-pro/blob/main/day81/README.md" target="_blank" rel="noopener noreferrer">Read the Day 81 architecture documentation ↗</a></section>
+
+        <section class="case-section" id="engineering"><span class="case-section-no">04 / ENGINEERING DECISIONS</span><h2>Building confidence beyond the happy path.</h2><div class="case-decision"><div class="decision-num">A</div><div><h3>Origin and request boundaries</h3><p>The Next.js proxy validates the browser origin before forwarding requests internally. The documented Docker fix keeps origin checks and CSRF protections in place rather than disabling them to resolve an integration problem.</p></div></div><div class="case-decision"><div class="decision-num">B</div><div><h3>Disposable environments, persistent test data</h3><p>Docker Compose creates a separate database for local testing. A named volume retains account and workspace data when containers stop and restart. The development setup intentionally avoids importing real personal data.</p></div></div><div class="case-decision"><div class="decision-num">C</div><div><h3>Safe credential handling</h3><p>Local environment values stay outside version control. CI generates a fresh password for its temporary PostgreSQL instance, avoiding dependence on the developer's own database or secrets.</p></div></div><div class="case-decision"><div class="decision-num">D</div><div><h3>Reproducible integration</h3><p>Automated checks build the frontend and backend, bring up an isolated Docker stack, test HTTP security boundaries and verify that database state survives a restart.</p></div></div></section>
+
+        <section class="case-section" id="validation"><span class="case-section-no">05 / VERIFICATION &amp; EVIDENCE</span><h2>Tests are part of the project story.</h2><p>The documented GitHub Actions workflow runs on pushes and pull requests to <code>main</code>. The source-quality and isolated Docker integration jobs were observed passing during development; the live Actions page is the source of truth for the current status.</p><div class="case-check-grid"><div><span class="check-mark" aria-hidden="true">✓</span><strong>Source quality</strong><p>Frontend ESLint and production build, backend TypeScript checks and Prisma client generation.</p></div><div><span class="check-mark" aria-hidden="true">✓</span><strong>HTTP boundary checks</strong><p>Frontend reachability, anonymous-access protections and browser-origin handling.</p></div><div><span class="check-mark" aria-hidden="true">✓</span><strong>Persistence across restart</strong><p>CI writes a marker in an isolated PostgreSQL instance, restarts the stack and checks that the marker remains.</p></div></div><div class="case-evidence-links"><a href="https://github.com/HasithaGayan/workflow-pro/actions" target="_blank" rel="noopener noreferrer">GitHub Actions runs ↗</a><a href="https://github.com/HasithaGayan/workflow-pro/blob/main/day82/README.md" target="_blank" rel="noopener noreferrer">Day 82 testing documentation ↗</a><a href="https://github.com/HasithaGayan/workflow-pro/tree/main/server/tests" target="_blank" rel="noopener noreferrer">Backend test files ↗</a></div><p class="case-detail">The repository includes additional test files for authentication, access, CSRF, roles, membership, API behavior and task writes. Their presence is not a claim that every individual suite is run by the published CI workflow.</p></section>
+
+        <section class="case-section" id="limitations"><span class="case-section-no">06 / HONEST STATUS &amp; NEXT STEPS</span><h2>Local proof today. Production hardening next.</h2><p>WorkFlow Pro is a substantial learning project, but it is not yet a public production service. The Day 81 environment uses local HTTP and development-oriented cookie settings. Secure public hosting would require reviewed HTTPS, origins, cookies, secrets, migrations, backups, rate limits and ongoing monitoring.</p><div class="case-next"><div><span class="next-marker">NOW</span><strong>Locally validated</strong><p>Working browser workflows, Docker services, PostgreSQL persistence and CI demonstrations.</p></div><div><span class="next-marker">NEXT</span><strong>Portfolio-grade demonstration</strong><p>Documented screen recordings and more genuine screenshots of workflows, with a public demo only if securely and affordably hosted.</p></div><div><span class="next-marker">LATER</span><strong>Production readiness</strong><p>Deployment review, secrets management, migrations, observability and backups.</p></div></div></section>
+      </div>
+    </div>
+  </main>
+  <footer class="case-footer"><span>WorkFlow Pro / An engineering case study</span><span>Hasitha Gayan · 2026</span><a href="./index.html#projects">← Back to all projects</a></footer>
+</div>
+</body>
+</html>

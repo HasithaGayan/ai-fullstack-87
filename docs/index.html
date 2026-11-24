@@ -1,179 +1,224 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="en" data-theme="system">
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Portfolio of Hasitha Gayan, documenting my AI and full-stack developer journey, projects, skills, and experience."
-    >
-
-    <meta
-        property="og:title"
-        content="Hasitha Gayan - Portfolio"
-    >
-
-    <meta
-        property="og:description"
-        content="AI and full-stack development portfolio of Hasitha Gayan."
-    >
-
-    <meta property="og:type" content="website">
-
-    <title>Hasitha Gayan - Portfolio</title>
-
-    <link rel="stylesheet" href="styles.css">
-    <!-- HGBP DevPortfolio favicon -->
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-    <link rel="alternate icon" type="image/x-icon" href="./favicon.ico">
-    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b25">
+  <meta name="description" content="Hasitha Gayan — AI-focused Information Technology undergraduate building practical full-stack software, machine learning applications and document AI.">
+  <meta property="og:title" content="Hasitha Gayan | AI & Full-Stack Developer">
+  <meta property="og:description" content="Explore five engineering projects, real demos and the thinking behind the code.">
+  <meta property="og:type" content="website">
+  <title>Hasitha Gayan — AI & Full-Stack Developer</title>
+  <link rel="icon" href="./favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-portrait-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('hg-theme')||'system'}catch(e){}</script>
+  <script defer src="./script.js"></script>
 </head>
-
 <body>
-
-    <!-- Skip link for keyboard accessibility -->
-    <a href="#main-content" class="skip-link">
-        Skip to main content
-    </a>
-
-    <!-- Header and navigation -->
-    <header>
-        <nav aria-label="Main navigation">
-            <ul>
-                <li>
-                    <a href="#about">About</a>
-                </li>
-
-                <li>
-                    <a href="#skills">Skills</a>
-                </li>
-
-                <li>
-                    <a href="#projects">Projects</a>
-                </li>
-
-                <li>
-                    <a href="#experience">
-                        Experience &amp; Education
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#contact">Contact</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main content -->
-    <main id="main-content">
-
-        <!-- About section -->
-        <section id="about" class="section-card">
-            <h1>Hasitha Gayan</h1>
-
-            <p>
-                AI Full-Stack Developer in progress.
-            </p>
-        </section>
-
-        <!-- Skills section -->
-        <section id="skills" class="section-card">
-            <h2>Skills</h2>
-
-            <ul>
-                <li>HTML</li>
-                <li>Git and GitHub</li>
-                <li>Command Line Basics</li>
-                <li>Browser DevTools</li>
-            </ul>
-        </section>
-
-        <!-- Projects section -->
-        <section id="projects" class="section-card">
-            <h2>Projects</h2>
-
-            <div class="projects-container">
-
-                <article>
-                    <h3>87-Day AI Full-Stack Journey</h3>
-
-                    <img
-                        src="https://opengraph.githubassets.com/1/HasithaGayan/ai-fullstack-87"
-                        alt="Preview of my 87-Day AI Full-Stack Developer journey project"
-                        width="600"
-                        loading="lazy"
-                        decoding="async"
-                        style="max-width: 100%; height: auto;"
-                    >
-
-                    <p>
-                        A learning journey where I build
-                        and document my full-stack
-                        development skills.
-                    </p>
-
-                    <a href="https://github.com/HasithaGayan/ai-fullstack-87">
-                        View AI Full-Stack Journey on GitHub
-                    </a>
-                </article>
-
+<svg xmlns="http://www.w3.org/2000/svg"
+width="0" height="0" aria-hidden="true"
+focusable="false" style="position:absolute;pointer-events:none">
+<defs>
+  <filter id="hgbp-pencil" color-interpolation-filters="sRGB">
+    <feColorMatrix in="SourceGraphic" type="saturate"
+      values="0" result="gray"/>
+    <feComponentTransfer in="gray" result="negative">
+      <feFuncR type="linear" slope="-1" intercept="1"/>
+      <feFuncG type="linear" slope="-1" intercept="1"/>
+      <feFuncB type="linear" slope="-1" intercept="1"/>
+    </feComponentTransfer>
+    <feGaussianBlur in="negative" stdDeviation="3" result="soft"/>
+    <feBlend in="soft" in2="gray" mode="color-dodge"/>
+  </filter>
+</defs>
+</svg>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="spotlight" aria-hidden="true"></div>
+  <div class="site-shell" id="top">
+    <aside class="identity-panel" aria-label="Portfolio introduction">
+      <div class="identity-inner">
+        <div class="topbar">
+          <a class="identity-mark" href="#top" aria-label="Hasitha Gayan — back to top"><span>H</span><span class="mark-dot"></span></a>
+          <span class="topbar-caption">HASITHA / DEVPORTFOLIO</span>
+          <details class="theme-picker" id="theme-picker">
+            <summary class="theme-trigger" aria-label="Choose color theme">
+              <svg class="theme-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+              <span id="theme-current-label">System</span>
+              <svg class="theme-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg>
+            </summary>
+            <div class="theme-options" role="group" aria-label="Color theme options">
+              <button type="button" class="theme-option" data-theme-option="system" aria-pressed="true"><span class="theme-option-icon" aria-hidden="true">◐</span><span class="theme-option-copy"><strong>System</strong><small>Follow device</small></span><span class="theme-option-check" aria-hidden="true">✓</span></button>
+              <button type="button" class="theme-option" data-theme-option="dark" aria-pressed="false"><span class="theme-option-icon" aria-hidden="true">☾</span><span class="theme-option-copy"><strong>Dark</strong><small>Evergreen night</small></span><span class="theme-option-check" aria-hidden="true">✓</span></button>
+              <button type="button" class="theme-option" data-theme-option="light" aria-pressed="false"><span class="theme-option-icon" aria-hidden="true">☼</span><span class="theme-option-copy"><strong>Light</strong><small>Warm ivory</small></span><span class="theme-option-check" aria-hidden="true">✓</span></button>
             </div>
-        </section>
+          </details>
+        </div>
+        <div class="identity-content">
+          <div class="eyebrow status-line"><span class="status-dot" aria-hidden="true"></span> OPEN TO LEARNING, BUILDING & OPPORTUNITIES</div>
+          <div class="portrait-frame" aria-label="Profile portrait placement">
+            <div class="portrait-art" id="portrait-placeholder" aria-hidden="true"><span class="portrait-initials">HG<span class="portrait-star">✳</span></span></div>
+            <img id="profile-image" class="profile-image" alt="Portrait of Hasitha Gayan" hidden>
+            <span class="portrait-caption" id="portrait-caption">YOUR PORTRAIT · READY TO ADD</span>
+          </div>
+          <p class="hero-overline">HELLO, I'M</p>
+          <h1>Hasitha<br><em>Gayan.</em></h1>
+          <h2>AI & Full-Stack Developer <span>in progress</span></h2>
+          <p class="hero-description">An Information Technology undergraduate at SLIIT, exploring the intersection of thoughtful software engineering, machine learning and useful digital experiences.</p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-outline" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+                      <a class="btn btn-outline" href="./assets/Hasitha-Gayan-CV.pdf" download>Download CV <span aria-hidden="true">&darr;</span></a>
+          </div>
+        </div>
+        <nav class="section-navigation" aria-label="On this page">
+          <a class="nav-link" href="#about"><span class="nav-rule"></span><span>01 / About</span></a>
+          <a class="nav-link" href="#projects"><span class="nav-rule"></span><span>02 / Selected work</span></a>
+          <a class="nav-link" href="#expertise"><span class="nav-rule"></span><span>03 / Technical focus</span></a>
+          <a class="nav-link" href="#journey"><span class="nav-rule"></span><span>04 / Journey</span></a>
+          <a class="nav-link" href="#contact"><span class="nav-rule"></span><span>05 / Connect</span></a>
+        </nav>
+        <div class="social-icon-row" aria-label="Professional links">
+          <a class="social-icon-link" href="https://github.com/HasithaGayan" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-2.7"/><path d="M9 21v-3.3a4.4 4.4 0 0 1-1.2-3.5c-3.7-1.1-5.4-5.6-3.4-9a4 4 0 0 1 .1-3.1s1.6-.3 3.5 1.7a12 12 0 0 1 7 0c1.9-2 3.5-1.7 3.5-1.7a4 4 0 0 1 .1 3.1c2 3.4.3 7.9-3.4 9a4.4 4.4 0 0 1-1.2 3.5V21"/></svg></a>
+          <a class="social-icon-link" href="https://www.linkedin.com/in/hasithagayan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7h.01M11 17v-7h3v1.3a3 3 0 0 1 5 2.4V17"/></svg></a>
+          <a class="social-icon-link" href="mailto:hasithagayanb23184@gmail.com" aria-label="Send professional email" title="Email"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 7 9 7 9-7"/></svg></a>
+          <a class="social-icon-link" href="./assets/Hasitha-Gayan-CV.pdf" download aria-label="Download CV PDF" title="Download CV"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10z"/><path d="M13 3v7h7M8 15h8M8 18h5"/></svg></a>
+        </div>
+        <div class="identity-foot">
+          <span>Sri Lanka</span>
+          <span class="foot-copyright">© <span id="year">2026</span> HG</span>
+        </div>
+      </div>
+    </aside>
 
-        <!-- Experience and education section -->
-        <section id="experience" class="section-card">
-            <h2>Experience &amp; Education</h2>
+    <main id="main-content" class="editorial-content">
+      <section class="intro-section reveal" id="about" aria-labelledby="about-title">
+        <div class="section-heading"><span class="eyebrow">01 / INTRODUCTION</span><span class="section-line"></span></div>
+        <h2 class="editorial-title" id="about-title">Building with curiosity.<br><em>Shipping with care.</em></h2>
+        <p class="lead-copy">I'm an aspiring AI engineer and software developer studying <strong>BSc (Hons) Information Technology at SLIIT</strong>, with a focus on Artificial Intelligence.</p>
+        <p>My projects span responsive web interfaces, databases, team collaboration, supervised learning and retrieval-augmented AI. I care about the parts that make software trustworthy: understanding the problem, testing the solution, and being clear about its limitations.</p>
+        <p>This portfolio is a record of work in progress—not a claim that every experiment is a commercial product. Each project links to its real source code, and live demos are shown only where they're available.</p>
+        <div class="facts-strip" aria-label="Portfolio at a glance">
+          <div><strong>05</strong><span>Project areas</span></div>
+          <div><strong>AI +</strong><span>Full-stack focus</span></div>
+          <div><strong>SLIIT</strong><span>IT undergraduate</span></div>
+        </div>
+      </section>
 
-            <article>
-                <h3>
-                    BSc (Hons) Information Technology
-                </h3>
+      <section class="work-section reveal" id="projects" aria-labelledby="projects-title">
+        <div class="section-heading"><span class="eyebrow">02 / SELECTED WORK</span><span class="section-line"></span></div>
+        <div class="section-header-row"><h2 class="editorial-title" id="projects-title">Proof through <em>projects.</em></h2><span class="section-side-note">01 — 05 / 2026</span></div>
+        <p class="section-intro">Real repositories, honest availability labels and a closer look at the technical decisions behind each build.</p>
+        <div class="project-filters" role="group" aria-label="Filter projects">
+          <button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true">All work</button>
+          <button type="button" class="filter-button" data-filter="fullstack" aria-pressed="false">Full-stack</button>
+          <button type="button" class="filter-button" data-filter="data" aria-pressed="false">Data</button>
+          <button type="button" class="filter-button" data-filter="ai" aria-pressed="false">AI / ML</button>
+        </div>
+        <p id="filter-results" class="sr-only" aria-live="polite">Showing 5 projects</p>
+        <div class="projects-list">
+          <article class="project-card featured" data-category="data fullstack">
+            <div class="project-image"><a class="screenshot-link" href="./assets/insightboard-real.png" target="_blank" rel="noopener noreferrer" aria-label="View full-size InsightBoard screenshot in a new tab"><img src="./assets/insightboard-real.png" loading="lazy" decoding="async"  alt="Actual InsightBoard dashboard with navigation, revenue cards and monthly analysis"></a><span class="image-corner">VIEW FULL SCREENSHOT ↗</span></div>
+            <div class="project-body"><div class="project-topline"><span class="project-index">01 / DATA EXPERIENCE</span><span class="project-status live"><span class="status-dot"></span> LIVE DEMO</span></div><h3><a class="project-title-link" href="https://insightboard-sigma.vercel.app/" target="_blank" rel="noopener noreferrer">InsightBoard <span aria-hidden="true">↗</span></a></h3><p>A responsive analytics dashboard with demonstration metrics, chart views and display preferences. Its next iteration will analyze real user-provided datasets rather than only sample numbers.</p>
+              <div class="tech-tags"><span>Next.js</span><span>React</span><span>Analytics UI</span><span>Vercel</span></div>
+              <div class="project-links"><a href="https://insightboard-sigma.vercel.app/" target="_blank" rel="noopener noreferrer">Open live demo <span aria-hidden="true">↗</span></a><a href="https://github.com/HasithaGayan/insightboard" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a></div>
+              <details class="project-details"><summary>Engineering notes <span aria-hidden="true">+</span></summary><div><p><strong>Focus:</strong> Dashboard UI, routing and a reliable public build. <strong>Next:</strong> CSV imports, calculated KPIs and report exports. The current displayed business figures are sample data.</p></div></details>
+            </div>
+          </article>
+          <article class="project-card" data-category="fullstack">
+            <div class="project-image"><a class="screenshot-link" href="./assets/workflow-pro-real.png" target="_blank" rel="noopener noreferrer" aria-label="View full-size WorkFlow Pro screenshot in a new tab"><img src="./assets/workflow-pro-real.png" loading="lazy" decoding="async"  alt="Actual WorkFlow Pro Kanban board showing To Do, In Progress and Done tasks"></a><span class="image-corner">VIEW FULL SCREENSHOT ↗</span></div>
+            <div class="project-body"><div class="project-topline"><span class="project-index">02 / FULL-STACK SYSTEM</span><span class="project-status local">LOCAL TESTED</span></div><h3><a class="project-title-link" href="https://github.com/HasithaGayan/workflow-pro" target="_blank" rel="noopener noreferrer">WorkFlow Pro <span aria-hidden="true">↗</span></a></h3><p>Workspace and task management with a Next.js frontend, Express API, PostgreSQL and Prisma. Local Docker integration, tests and GitHub CI have been verified.</p>
+              <div class="tech-tags"><span>TypeScript</span><span>Express</span><span>PostgreSQL</span><span>Docker</span><span>GitHub Actions</span></div>
+              <div class="project-links"><a class="case-study-cta" href="./workflow-pro.html">Read case study <span aria-hidden="true">↗</span></a><a href="https://github.com/HasithaGayan/workflow-pro" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a><span class="non-link-status">Cloud demo not published</span></div>
+              <details class="project-details"><summary>Engineering notes <span aria-hidden="true">+</span></summary><div><p><strong>Focus:</strong> Authorization, session security, team workflows and persistence. <strong>Validated:</strong> CI builds, isolated database tests and local Docker. <strong>Next:</strong> a safe hosted demo when suitable resources are available.</p></div></details>
+            </div>
+          </article>
+          <article class="project-card" data-category="ai data">
+  <div class="project-image">
+  <a class="screenshot-link" href="./assets/predictiq-real.png" target="_blank" rel="noopener noreferrer">
+    <img src="./assets/predictiq-real.png" loading="lazy" alt="Actual PredictIQ application showing bicycle rental predictions and a 24-hour demand chart">
+  </a>
+  <span class="image-corner">VIEW FULL SCREENSHOT ↗</span>
+</div>
+<div class="project-body">
+    <div class="project-topline">
+      <span class="project-index">03 / MACHINE LEARNING</span>
+      <span class="project-status local">LOCAL TESTED</span>
+    </div>
 
-                <p>SLIIT</p>
+    <h3>
+      <a class="project-title-link" href="./predictiq.html">
+        PredictIQ <span aria-hidden="true">↗</span>
+      </a>
+    </h3>
 
-                <p>
-                    Currently developing skills in
-                    software development and AI.
-                </p>
-            </article>
-        </section>
+    <p>Historical bicycle rental-demand exploration using a trained Random Forest, a validated FastAPI endpoint and a responsive 24-hour prediction interface.</p>
 
-        <!-- Contact section -->
-        <section id="contact" class="section-card">
-            <h2>Contact</h2>
+    <div class="tech-tags">
+      <span>Python</span>
+      <span>Scikit-learn</span>
+      <span>Random Forest</span>
+      <span>FastAPI</span>
+      <span>pytest</span>
+    </div>
 
-            <p>
-                You can explore my projects and
-                find my public profile on GitHub.
-            </p>
+    <div class="project-links">
+      <a class="case-study-cta" href="./predictiq.html">
+        Read case study <span aria-hidden="true">↗</span>
+      </a>
+      <a href="https://github.com/HasithaGayan/predictiq" target="_blank" rel="noopener noreferrer">
+        Source code <span aria-hidden="true">↗</span>
+      </a>
+      <span class="non-link-status">Public demo pending</span>
+    </div>
 
-            <p>
-                <a href="https://github.com/HasithaGayan">
-                    Visit My GitHub Profile
-                </a>
-            </p>
+    <details class="project-details">
+      <summary>Engineering notes <span aria-hidden="true">+</span></summary>
+      <div>
+        <p><strong>Evidence:</strong> 47.68 validation MAE, 74.14 RMSE, 57 recorded automated tests passed. <strong>Limitations:</strong> 2011–2012 data, unused held-out test period and large errors during some individual hours.</p>
+      </div>
+    </details>
+  </div>
+</article>
+          <article class="project-card" data-category="ai fullstack">
+            <div class="project-image">
+  <a class="screenshot-link" href="./assets/knowledgeai-real.png" target="_blank" rel="noopener noreferrer">
+    <img src="./assets/knowledgeai-real.png" loading="lazy" alt="Actual KnowledgeAI document question answering with a verified source quotation">
+  </a>
+  <span class="image-corner">VIEW FULL SCREENSHOT ↗</span>
+</div><div class="project-body"><div class="project-topline"><span class="project-index">04 / APPLIED AI</span><span class="project-status code">LOCAL PROTOTYPE</span></div><h3><a class="project-title-link" href="https://github.com/HasithaGayan/knowledgeai" target="_blank" rel="noopener noreferrer">KnowledgeAI <span aria-hidden="true">↗</span></a></h3><p>A document-oriented AI and retrieval project. The emphasis is on finding evidence in source material, making answers inspectable and understanding when the model should abstain.</p><div class="tech-tags"><span>Python</span><span>RAG</span><span>Embeddings</span><span>Retrieval</span></div><div class="project-links"><a href="https://github.com/HasithaGayan/knowledgeai" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a><span class="non-link-status">Public demo pending</span></div><details class="project-details"><summary>Engineering notes <span aria-hidden="true">+</span></summary><div><p><strong>Focus:</strong> Document processing, retrieval and grounded responses. <strong>Next:</strong> evaluations, safe uploads and a privacy-aware sample-document demo.</p></div></details></div>
+          </article>
+          <article class="project-card compact-card" data-category="fullstack">
+            <div class="project-image">
+  <a class="screenshot-link" href="./assets/devportfolio-real.png" target="_blank" rel="noopener noreferrer">
+    <img src="./assets/devportfolio-real.png" loading="lazy" alt="Actual DevPortfolio V2 professional portfolio homepage">
+  </a>
+  <span class="image-corner">VIEW FULL SCREENSHOT ↗</span>
+</div><div class="project-body"><div class="project-topline"><span class="project-index">05 / DESIGN ENGINEERING</span><span class="project-status local">V2 IN PROGRESS</span></div><h3><a class="project-title-link" href="https://github.com/HasithaGayan/ai-fullstack-87" target="_blank" rel="noopener noreferrer">DevPortfolio <span aria-hidden="true">↗</span></a></h3><p>An accessible portfolio experience showcasing genuine work, thoughtful visual design, multiple themes and a clear route from project to code. Private editing tools are planned separately.</p><div class="tech-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Accessibility</span></div><div class="project-links"><a href="https://github.com/HasithaGayan/ai-fullstack-87" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a></div><details class="project-details"><summary>Engineering notes <span aria-hidden="true">+</span></summary><div><p><strong>Focus:</strong> Responsive editorial design, user preferences, performance and accessibility. <strong>Next:</strong> a finalized public CV and a securely authenticated content manager.</p></div></details></div>
+          </article>
+        </div>
+      </section>
 
-            <p>
-                This portfolio does not currently
-                accept messages directly.
-            </p>
-        </section>
+      <section class="skills-section reveal" id="expertise" aria-labelledby="skills-title">
+        <div class="section-heading"><span class="eyebrow">03 / TECHNICAL FOCUS</span><span class="section-line"></span></div>
+        <h2 class="editorial-title" id="skills-title">Tools are useful.<br><em>Understanding matters.</em></h2>
+        <p class="section-intro">The technologies I'm actively learning and using to build these projects.</p>
+        <div class="skill-columns"><div class="skill-group"><span class="skill-number">01</span><h3>Interfaces</h3><p>HTML · CSS · JavaScript · React · Next.js · Responsive design</p></div><div class="skill-group"><span class="skill-number">02</span><h3>Application engineering</h3><p>TypeScript · Node.js · Express · REST APIs · PostgreSQL · Prisma</p></div><div class="skill-group"><span class="skill-number">03</span><h3>AI & data</h3><p>Python · Machine learning · Model evaluation · FastAPI · RAG</p></div><div class="skill-group"><span class="skill-number">04</span><h3>Delivery & quality</h3><p>Git · GitHub · Automated tests · Docker · CI workflows · Documentation</p></div></div>
+      </section>
 
+      <section class="journey-section reveal" id="journey" aria-labelledby="journey-title">
+        <div class="section-heading"><span class="eyebrow">04 / LEARNING JOURNEY</span><span class="section-line"></span></div>
+        <h2 class="editorial-title" id="journey-title">Curiosity, <em>with structure.</em></h2>
+        <div class="timeline"><div class="timeline-item"><span class="timeline-date">NOW</span><div><h3>BSc (Hons) in Information Technology</h3><p>Sri Lanka Institute of Information Technology (SLIIT) · Artificial Intelligence specialization.</p></div></div><div class="timeline-item"><span class="timeline-date">2026</span><div><h3>AI + Full-Stack Engineering Roadmap</h3><p>Building five practical projects across web development, databases, machine learning and document intelligence. Working on deployment and production-readiness skills.</p></div></div><div class="timeline-item"><span class="timeline-date">NEXT</span><div><h3>Internship and continued development</h3><p>Seeking opportunities to contribute, learn from experienced engineers and improve software through real feedback.</p></div></div></div>
+      </section>
+
+      <section class="contact-section reveal" id="contact" aria-labelledby="contact-title">
+        <div class="section-heading"><span class="eyebrow">05 / CONNECT</span><span class="section-line"></span></div>
+        <div class="contact-card"><p class="contact-kicker">LET'S BUILD SOMETHING USEFUL.</p><h2 id="contact-title">The next chapter<br><em>starts with a conversation.</em></h2><p>Interested in an internship, software engineering collaboration or exploring one of my projects? My GitHub is the best verified contact point for now.</p><a class="btn btn-solid" href="https://github.com/HasithaGayan" target="_blank" rel="noopener noreferrer">Explore my GitHub <span aria-hidden="true">↗</span></a><div class="resume-row" id="resume"><span><strong>CV / Résumé</strong><small id="resume-status">Current CV (PDF)</small></span><a id="resume-download" class="resume-link" href="./assets/Hasitha-Gayan-CV.pdf" download>Download CV ↓</a></div></div>
+      </section>
+      <footer class="main-footer"><span>Designed with intention. Built in public.</span><span>Hasitha Gayan · <span id="footer-year">2026</span></span><a href="#top">Back to top ↑</a></footer>
     </main>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Hasitha Gayan</p>
-    </footer>
-
+  </div>
 </body>
-
 </html>
