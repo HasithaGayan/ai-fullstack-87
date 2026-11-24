@@ -703,3 +703,43 @@ html[data-theme="light"] {
         );
     }
 }
+
+/* HGBP - Responsive portrait watermark */
+@media (max-width: 990px) {
+    .identity-inner {
+        position: relative;
+        isolation: isolate;
+    }
+
+    .identity-inner::before {
+        content: "";
+        position: absolute;
+        inset: 26% 0 auto auto; width: min(100%, 520px); aspect-ratio: 1 / 1;
+        z-index: 0;
+        pointer-events: none;
+        background: url("./assets/profile.jpg") center center / cover no-repeat;
+        filter: grayscale(1) brightness(1.25) contrast(1.05) blur(.8px);
+        opacity: .22;
+        -webkit-mask-image: radial-gradient(ellipse at 55% 50%, #000 10%, rgba(0,0,0,.8) 30%, transparent 70%);
+        mask-image: radial-gradient(ellipse at 55% 50%, #000 10%, rgba(0,0,0,.8) 30%, transparent 70%);
+    }
+
+    .identity-inner > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    html[data-theme="light"] .identity-inner::before {
+        filter: url("#hgbp-pencil");
+        mix-blend-mode: multiply;
+        opacity: .13;
+    }
+}
+
+@media (max-width: 990px) and (prefers-color-scheme: light) {
+    html[data-theme="system"] .identity-inner::before {
+        filter: url("#hgbp-pencil");
+        mix-blend-mode: multiply;
+        opacity: .13;
+    }
+}
