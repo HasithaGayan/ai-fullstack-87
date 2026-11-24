@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PredictIQ case study: historical bicycle rental demand, model evaluation and FastAPI engineering.">
+  <title>PredictIQ — Case Study | Hasitha Gayan</title>
+  <link rel="icon" href="./favicon.ico">
+  <link rel="stylesheet" href="./styles.css">
+
+  <script>
+    try {
+      const t = localStorage.getItem('hg-theme');
+      if (['system','light','dark'].includes(t)) {
+        document.documentElement.dataset.theme = t;
+      }
+    } catch(e) {}
+  </script>
+</head>
+
+<body class="pq-case-page">
+  <a class="skip-link" href="#case-main">Skip to main content</a>
+
+  <main id="case-main" class="pq-case-shell">
+
+    <header class="pq-case-nav">
+      <a class="identity-mark" href="./index.html" aria-label="Portfolio home">
+        H<span class="mark-dot"></span>
+      </a>
+
+      <a class="btn btn-outline" href="./index.html#projects">
+        ← Back to projects
+      </a>
+
+      <label class="pq-theme-label">
+        Theme
+        <select id="pq-theme">
+          <option value="system">System</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+        </select>
+      </label>
+    </header>
+
+    <div class="pq-case-hero">
+      <p class="eyebrow">CASE STUDY / MACHINE LEARNING / 2026</p>
+      <h1>PredictIQ<span>.</span></h1>
+      <h2>Urban mobility demand intelligence</h2>
+
+      <p>Explore estimated hourly bicycle rental demand using historical weather and calendar inputs. An educational, locally tested machine-learning application.</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="https://github.com/HasithaGayan/predictiq" target="_blank" rel="noopener noreferrer">
+          View source code ↗
+        </a>
+        <a class="btn btn-outline" href="#evaluation">
+          Model evaluation ↓
+        </a>
+      </div>
+
+      <p class="pq-muted">LOCAL DEMO · NO PUBLIC PREDICTION SERVICE</p>
+    </div>
+
+    <div class="pq-stats">
+      <div><strong>17,379</strong><span>Historical observations</span></div>
+      <div><strong>47.68</strong><span>Validation MAE</span></div>
+      <div><strong>74.14</strong><span>Validation RMSE</span></div>
+      <div><strong>57</strong><span>Recorded tests passed</span></div>
+    </div>
+
+    <section class="pq-section">
+      <h2>01 / Problem &amp; data</h2>
+
+      <p>Predict total hourly rentals (cnt) for historical scenarios. The UCI Bike Sharing dataset covers Washington DC in 2011–2012. The chronological split contains 12,139 training, 2,640 validation and 2,600 held-out test observations.</p>
+
+      <p>To avoid target leakage, casual and registered rental counts are excluded because their sum is the target. The instant identifier is also excluded. Preprocessing is fitted only on training data, including within each cross-validation fold.</p>
+    </section>
+
+    <section class="pq-section" id="evaluation">
+      <h2>02 / Model evaluation</h2>
+
+      <div class="pq-evidence-panel">
+        <div class="pq-chart" role="group" aria-label="Historical validation MAE comparison; lower is better">
+  <p class="pq-chart-label">PREDICTIQ / VALIDATION MAE</p>
+
+  <div class="pq-chart-heading">
+    <strong>75.5%</strong>
+    <span>lower error vs mean baseline</span>
+  </div>
+
+  <div class="pq-bar-row">
+    <span>Mean baseline</span><strong>194.52</strong>
+    <div class="pq-track"><i style="width:97.25895%"></i></div>
+  </div>
+
+  <div class="pq-bar-row">
+    <span>Ridge regression</span><strong>111.26</strong>
+    <div class="pq-track"><i style="width:55.6283%"></i></div>
+  </div>
+
+  <div class="pq-bar-row">
+    <span>Random Forest</span><strong>49.85</strong>
+    <div class="pq-track"><i style="width:24.92645%"></i></div>
+  </div>
+
+  <div class="pq-bar-row pq-best">
+    <span>Improved Random Forest</span><strong>47.68</strong>
+    <div class="pq-track"><i style="width:23.8417%"></i></div>
+  </div>
+
+  <p class="pq-chart-foot">
+    0–200 rentals · Lower is better · Historical validation, not test accuracy
+  </p>
+</div>
+      </div>
+
+      <div class="pq-table-wrap">
+        <table class="pq-table">
+          <caption>Same historical validation period</caption>
+          <thead>
+            <tr>
+              <th scope="col">Model</th>
+              <th scope="col">MAE</th>
+              <th scope="col">RMSE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Mean baseline</th><td>194.5179</td><td>254.6071</td></tr>
+            <tr><th scope="row">Ridge regression</th><td>111.2566</td><td>142.3599</td></tr>
+            <tr><th scope="row">Day 65 Random Forest</th><td>49.8529</td><td>77.2611</td></tr>
+            <tr><th scope="row">Day 66 improved Random Forest</th><td>47.6834</td><td>74.1438</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>MAE fell by 75.5% relative to the mean baseline and 4.35% relative to the Day 65 Random Forest. MAE measures average absolute error in rentals; RMSE penalizes larger errors more strongly. These are validation metrics, not final test results or percentage accuracy.</p>
+    </section>
+
+    <section class="pq-section">
+      <h2>03 / Engineering decisions</h2>
+
+      <p>Three expanding chronological cross-validation folds compared four Random Forest configurations. The selected configuration uses 70 trees, maximum depth 18 and minimum leaf size 2; its training-only CV MAE was 54.4441.</p>
+
+      <p>Two engineered features capture commuting-hour patterns and temperature–humidity interaction. The training pipeline is saved locally for consistent inference; the earlier model is preserved for comparison.</p>
+    </section>
+
+    <section class="pq-section">
+      <h2>04 / Architecture</h2>
+
+      <div class="pq-flow" aria-label="Training pipeline">
+        <span>Historical data</span>
+        <span>Cleaning &amp; EDA</span>
+        <span>Training pipeline</span>
+        <span>Validation</span>
+        <span>Saved model</span>
+      </div>
+
+      <div class="pq-flow" aria-label="Prediction request flow">
+        <span>Browser inputs</span>
+        <span>FastAPI validation</span>
+        <span>Saved pipeline</span>
+        <span>Prediction output</span>
+      </div>
+
+      <p>The HTML/CSS/JavaScript frontend offers scenario presets and a model-based 24-hour chart. FastAPI loads the trusted Day 66 model artifact and validates prediction requests.</p>
+    </section>
+
+    <section class="pq-section">
+      <h2>05 / Reliability &amp; demonstration</h2>
+
+      <p>The Day 70 report records 57 passing automated tests and 24 successful hourly predictions. The example historical scenario ranges from 2.3 to 226.0 estimated rentals, peaking at 08:00.</p>
+
+      <div class="pq-table-wrap">
+        <table class="pq-table">
+          <caption>Documented failure checks</caption>
+          <thead>
+            <tr><th scope="col">Failure</th><th scope="col">Response</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Invalid input</th><td>HTTP 422</td></tr>
+            <tr><th scope="row">Model unavailable</th><td>HTTP 503</td></tr>
+            <tr><th scope="row">Frontend missing</th><td>HTTP 404</td></tr>
+            <tr><th scope="row">Model missing at startup</th><td>Startup fails clearly</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>To reproduce locally, follow the repository setup instructions, prepare the dataset and regenerate the trusted model before starting the API.</p>
+
+      <pre class="pq-code">python -m uvicorn backend.app:app --host 127.0.0.1 --port 8000
+python -m pytest tests -q</pre>
+    </section>
+
+    <section class="pq-section">
+      <h2>06 / Limitations &amp; next steps</h2>
+
+      <p>The held-out 2,600 observations remain unused. One validation example on 1 August 2012 at 18:00 had 891 actual rentals versus 409.92 predicted, an absolute error of 481.08. Its cause is not established. Historical data cannot establish present-day forecasting performance.</p>
+
+      <p>The raw dataset and trained joblib artifact are excluded from GitHub. New installations must reproduce training; never load untrusted joblib or pickle files. Public hosting and final held-out evaluation remain future work.</p>
+    </section>
+
+    <section class="pq-section">
+      <h2>07 / Evidence &amp; attribution</h2>
+
+      <div class="pq-source-links">
+        <a href="https://github.com/HasithaGayan/predictiq/blob/main/docs/day65_model_training.md">Day 65 model comparison ↗</a>
+        <a href="https://github.com/HasithaGayan/predictiq/blob/main/docs/day66_model_improvement.md">Day 66 model improvement ↗</a>
+        <a href="https://github.com/HasithaGayan/predictiq/blob/main/docs/day70_demo.md">Day 70 demo and verification ↗</a>
+        <a href="https://doi.org/10.24432/C5W894">UCI Bike Sharing dataset ↗</a>
+      </div>
+
+      <p class="pq-muted">Dataset: Fanaee-T, H. (2013), Bike Sharing, UCI Machine Learning Repository. CC BY 4.0, as documented in the project README.</p>
+    </section>
+
+    <footer class="main-footer">
+      <span>Hasitha Gayan · 2026</span>
+      <a href="./index.html#projects">Back to portfolio ↑</a>
+    </footer>
+
+  </main>
+
+  <script>
+    const theme = document.getElementById('pq-theme');
+    theme.value = document.documentElement.dataset.theme;
+
+    theme.addEventListener('change', () => {
+      document.documentElement.dataset.theme = theme.value;
+      try {
+        localStorage.setItem('hg-theme', theme.value);
+      } catch(e) {}
+    });
+  </script>
+
+</body>
+</html>
