@@ -1,15 +1,12 @@
 name: HGBP Website Monitoring
-
 on:
   workflow_dispatch:
   schedule:
     - cron: '17 * * * *'
   push:
-    branches: [ops/hgbp-monitoring]
+    branches: [main, docs/knowledgeai-live]
     paths: ['.github/workflows/uptime-monitor.yml']
-
 permissions: {}
-
 jobs:
   availability:
     runs-on: ubuntu-latest
@@ -26,6 +23,8 @@ jobs:
             url: https://predictiq-iota-plum.vercel.app/
           - name: WorkFlow Pro
             url: https://workflow-pro-weld.vercel.app/
+          - name: KnowledgeAI
+            url: https://knowledgeai-flame.vercel.app/
     steps:
       - name: Check website availability and HTTPS
         env:
